@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import SideBar from './components/SideBar.component';
+import List from './components/List.component';
+import SearchBar from './components/SearchBar.component';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <SearchBar />
+      <div style={{ display: 'flex', marginTop: '50px', justifyContent: 'space-between', width: '80%', margin: 'auto' }}>
+        <SideBar />
+        <hr width="1" size="500" />
+        <List />
+      </div>
+    </div >
   );
 }
 
