@@ -5,7 +5,7 @@ import { GET_COLOR_FAILURE, GET_COLOR_REQUEST, GET_COLOR_SUCCESS } from "../acti
 export const getColors = () => {
     return (dispatch) => {
         dispatch({ type: GET_COLOR_REQUEST })
-        axiosUtils('colors', 'GET', null, null)
+        axiosUtils('/colors', 'GET', null, null)
             .then((response) => {
                 dispatch({ type: GET_COLOR_SUCCESS, payload: response.data })
             })

@@ -1,10 +1,11 @@
 import { axiosUtils } from "../../utils"
 import { GET_PLANET_FAILURE, GET_PLANET_REQUEST, GET_PLANET_SUCCESS } from "../actionTypes"
 
-export const getPlanets = () => {
+export const getPlanets = (paramObj) => {
+
     return (dispatch) => {
         dispatch({ type: GET_PLANET_REQUEST })
-        axiosUtils('planets', 'GET', null, null)
+        axiosUtils(`/planets?${paramObj}`, 'GET', null)
             .then((response) => {
                 dispatch({ type: GET_PLANET_SUCCESS, payload: response.data })
             })
@@ -12,6 +13,5 @@ export const getPlanets = () => {
                 dispatch({ type: GET_PLANET_FAILURE, payload: error })
             })
     }
-
 
 }
