@@ -1,13 +1,21 @@
 import React from 'react'
-
+import image from './iconmonstr-search-thin-64.png'
 const SearchBar = ({ input, setInput, handleSearchKeyPress }) => {
 
     return (
-        <div style={{ border: '1px solid black', textAlign: 'center', padding: '10px' }}>
-            <input type="text" value={input}
+        <div className="search-bar" >
+
+
+
+            <input type="text"
+                value={input}
                 onKeyDown={handleSearchKeyPress}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Search" />
+            {/* <span> */}
+            {/* <img src={image} alt="" /> */}
+
+            {/* </span> */}
         </div>
     )
 }

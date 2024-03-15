@@ -1,4 +1,23 @@
-.vl {
-    border-left: 6px solid green;
-    height: 500px;
+.search-bar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+
+
+}
+
+.search-bar img {
+    width: 20px;
+    background-color: blue;
+}
+
+
+
+.search-bar input {
+    width: 70%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+
 }

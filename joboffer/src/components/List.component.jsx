@@ -6,11 +6,20 @@ import { getShapes } from '../Redux/shapesRedux/action'
 import { getSizes } from '../Redux/sizeRedux/action'
 import ListCard from './ListCard.component'
 import SearchBar from './SearchBar.component'
+import { useLocation, useParams } from 'react-router-dom'
+
 const List = () => {
+
+
+    const [color, setColors] = useState([]);
+    const [shape, setShapes] = useState([]);
+    const [size, setSizes] = useState([]);
+
     const [selectedColors, setSelectedColors] = useState([]);
     const [selectedShapes, setSelectedShapes] = useState([]);
     const [selectedSizes, setSelectedSizes] = useState([]);
-    const [input, setInput] = useState("")
+    const [input, setInput] = useState("");
+
     const { Planet, isLoading, isError } = useSelector(state => {
         return state.PlanetReducer
     })
@@ -18,8 +27,16 @@ const List = () => {
 
 
     const { colors } = useSelector(state => state.colorReducer)
+
     const { shapes } = useSelector(state => state.shapeReducer)
+
     const { sizes } = useSelector(state => state.sizeReducer)
+
+    useEffect(() => {
+        setColors(colors)
+        setShapes(shapes)
+        setSizes(sizes)
+    }, [])
 
 
     useEffect(() => {
@@ -42,16 +59,21 @@ const List = () => {
         if (input) {
             queryParams.name = input
         }
-        return queryParams
+
+
+        return new URLSearchParams(queryParams).toString()
     }
 
 
     useEffect(() => {
-        const queryParams = FilterItem(selectedColors, selectedShapes, selectedSizes, input)
-        const query = new URLSearchParams(queryParams).toString();
-        dispatch(getPlanets(query))
-    }, [selectedColors, selectedShapes, selectedSizes, input])
 
+        const queryParams = FilterItem(selectedColors, selectedShapes, selectedSizes, input)
+
+        dispatch(getPlanets(queryParams))
+
+
+    }, [selectedColors, selectedShapes, selectedSizes, input])
+    
 
     const handleColorChange = (event) => {
         const { value, checked } = event.target;
@@ -82,10 +104,9 @@ const List = () => {
 
     const handleSearchKeyPress = (event) => {
         if (event.key === 'Enter') {
-
             const queryParams = FilterItem(selectedColors, selectedShapes, selectedSizes, input)
-            const query = new URLSearchParams(queryParams).toString();
-            dispatch(getPlanets(query))
+            dispatch(getPlanets(queryParams))
+
         }
     }
 
@@ -96,7 +117,7 @@ const List = () => {
     return (
         <div>
             <SearchBar input={input} setInput={setInput} handleSearchKeyPress={handleSearchKeyPress} />
-            <div style={{ display: 'flex', marginTop: '50px', justifyContent: 'space-between', width: '80%', margin: 'auto' }} >
+            <div style={{ display: 'flex', marginTop: '80px', justifyContent: 'space-between', width: '80%', margin: 'auto' }} >
                 <div className='filter-container'>
                     <div className='color-filer'>
                         <h3>Color</h3>
@@ -127,8 +148,10 @@ const List = () => {
                         ))}
                     </div>
 
+
                 </div>
                 <hr width="1" size="500" />
+
                 <div>
                     {
                         isLoading ? <h1>Loading...</h1> : Planet?.map((planet) => {

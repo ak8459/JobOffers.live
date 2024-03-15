@@ -8,9 +8,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div style={{ display: 'flex', marginTop: '50px', justifyContent: 'space-between', width: '80%', margin: 'auto' }}> */}
+
       <List />
-      {/* </div> */}
+
     </div >
   );
 }
