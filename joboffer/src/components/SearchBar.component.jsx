@@ -3,14 +3,6 @@ import './searchbar.css'
 const SearchBar = ({ input, setInput, handleSearchKeyPress }) => {
 
     return (
-        // <div className="search-bar" >
-        //     <input
-        //  type="text"
-        //         value={input}
-        //         onKeyDown={handleSearchKeyPress}
-        //         onChange={(e) => setInput(e.target.value)}
-        //         placeholder="Search" />
-        // </div>
         <div className="wrapper">
             <div className="searchBar">
                 <input id="searchQueryInput" type="text" name="Search" placeholder="Search"

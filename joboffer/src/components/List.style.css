@@ -1,0 +1,15 @@
+.filter {
+    display: 'flex';
+    justify-content: 'space-between';
+}
+
+.filter-child {
+    display: 'flex';
+    border: '1px solid black';
+    justify-content: 'space-between';
+    width: '80%';
+    margin: 'auto'
+}
+.filter-container{
+    margin-left: '10px'
+}

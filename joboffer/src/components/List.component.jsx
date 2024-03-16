@@ -7,6 +7,8 @@ import { getSizes } from '../Redux/sizeRedux/action'
 import ListCard from './ListCard.component'
 import SearchBar from './SearchBar.component'
 import Loading from './Loading'
+import SideBar from './SideBar.component'
+import './List.style.css'
 
 import {
     StringParam, ArrayParam,
@@ -105,6 +107,7 @@ const List = () => {
         if (event.key === 'Enter') {
             const queryParams = FilterItem(selectedColors, selectedShapes, selectedSizes, input)
             setQuery({ color: selectedColors, shape: selectedShapes, size: selectedSizes, q: input })
+            setInput('')
             dispatch(getPlanets(queryParams))
         }
     }
@@ -113,11 +116,10 @@ const List = () => {
     return (
         <div>
             <SearchBar input={input} setInput={setInput} handleSearchKeyPress={handleSearchKeyPress} />
-            <div style={{ marginTop: '80px', width: '80%', margin: 'auto' }} >
-                <div style={{ border: '1px solid black', padding: '10px', display: 'flex', justifyContent: 'space-between', margin: '20px' }}>
-                    <div className='filter-container'>
-
-                        <div className='color-filer'>
+            <div className='filter'>
+                <div className='filter-child' style={{ border: '1px solid black', display: 'flex', justifyContent: 'space-between', width: '80%', margin: 'auto' }}>
+                    <div className='filter-container' style={{ marginLeft: '20px' }}>
+                        <div className='color-filer' >
                             <h3>Color</h3>
                             {colors && colors?.map(color => (
                                 <div key={color.id}>
@@ -149,7 +151,7 @@ const List = () => {
                     <div style={{ marginLeft: '50px' }}>
                         <hr width="1" size="500" />
                     </div>
-                    <div >
+                    <div style={{ marginRight: '20px' }}>
                         {
                             isLoading ? <Loading /> : Planet?.map((planet) => {
                                 return <ListCard key={planet.id} planet={planet} />
