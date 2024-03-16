@@ -4,7 +4,7 @@ import { GET_SHAPE_REQUEST, GET_SHAPE_SUCCESS, GET_SHAPE_FAILURE } from "../acti
 export const getShapes = () => {
     return (dispatch) => {
         dispatch({ type: GET_SHAPE_REQUEST })
-        axiosUtils('/shapes', 'GET', null, null)
+        axiosUtils('/shapes', 'GET')
             .then((response) => {
                 dispatch({ type: GET_SHAPE_SUCCESS, payload: response.data })
             })

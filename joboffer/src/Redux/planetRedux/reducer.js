@@ -10,18 +10,22 @@ export const PlanetReducer = (state = initialState, action) => {
         case "GET_PLANET_REQUEST": {
             return {
                 ...state,
+                isLoading: true
             }
         }
         case "GET_PLANET_SUCCESS": {
             return {
                 ...state,
-                Planet: action.payload
+                Planet: action.payload,
+                isLoading: false
             }
         }
         case "GET_PLANET_FAILURE": {
             return {
                 ...state,
-                isError: true
+                isError: true,
+                isLoading: false
+
             }
         }
         default: {

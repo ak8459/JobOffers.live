@@ -5,7 +5,7 @@ export const getPlanets = (paramObj) => {
 
     return (dispatch) => {
         dispatch({ type: GET_PLANET_REQUEST })
-        axiosUtils(`/planets?${paramObj}`, 'GET', null)
+        axiosUtils(`/planets?${paramObj}`, 'GET')
             .then((response) => {
                 dispatch({ type: GET_PLANET_SUCCESS, payload: response.data })
             })

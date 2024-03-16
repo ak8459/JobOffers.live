@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const BASE_URL = 'https://api-server-ujzi.onrender.com'
 
-export const axiosUtils = (url, method, data=null, headers) => {
+export const axiosUtils = (url, method, data = null, headers = null) => {
 
     return axios({
         url: `${BASE_URL}${url}`,
