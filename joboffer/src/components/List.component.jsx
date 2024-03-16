@@ -8,6 +8,9 @@ import ListCard from './ListCard.component'
 import SearchBar from './SearchBar.component'
 import Loading from './Loading'
 import SideBar from './SideBar.component'
+import Color from './Color.component'
+import Size from './Size.component'
+import Shape from './Shape.component'
 import './List.style.css'
 
 import {
@@ -106,7 +109,7 @@ const List = () => {
     const handleSearchKeyPress = (event) => {
         if (event.key === 'Enter') {
             const queryParams = FilterItem(selectedColors, selectedShapes, selectedSizes, input)
-            setQuery({ color: selectedColors, shape: selectedShapes, size: selectedSizes, q: input })
+            setQuery({ q: input })
             setInput('')
             dispatch(getPlanets(queryParams))
         }
@@ -120,32 +123,14 @@ const List = () => {
                 <div className='filter-child' style={{ border: '1px solid black', display: 'flex', justifyContent: 'space-between', width: '80%', margin: 'auto' }}>
                     <div className='filter-container' style={{ marginLeft: '20px' }}>
                         <div className='color-filer' >
-                            <h3>Color</h3>
-                            {colors && colors?.map(color => (
-                                <div key={color.id}>
-                                    <input type="checkbox" id={color.id} value={color.id} onChange={handleColorChange} checked={selectedColors.includes(color.id)} />
-                                    <label htmlFor={color.id}>{color.name}</label>
-                                </div>
-                            ))}
+                            <Color colors={colors} handleColorChange={handleColorChange} selectedColors={selectedColors} />
                         </div>
                         <div className="size-filter">
-                            <h3>Size</h3>
-                            {sizes && sizes.map(size => (
-                                <div key={size.id}>
-                                    <input type="checkbox" id={size.id} value={size.id} onChange={handleSizeChange} checked={selectedSizes.includes(size.id)} />
-                                    <label htmlFor={size.id}>{size.name}</label>
-                                </div>
-                            ))}
+                            <Size sizes={sizes} handleSizeChange={handleSizeChange} selectedSizes={selectedSizes} />
                         </div>
 
                         <div className='shape-filter'>
-                            <h3>Shape</h3>
-                            {shapes && shapes.map(shape => (
-                                <div key={shape.id}>
-                                    <input type="checkbox" id={shape.id} value={shape.id} onChange={handleShapeChange} checked={selectedShapes.includes(shape.id)} />
-                                    <label htmlFor={shape.id}>{shape.name}</label>
-                                </div>
-                            ))}
+                            <Shape shapes={shapes} handleShapeChange={handleShapeChange} selectedShapes={selectedShapes} />
                         </div>
                     </div>
                     <div style={{ marginLeft: '50px' }}>
